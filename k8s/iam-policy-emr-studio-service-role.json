@@ -19,7 +19,7 @@
                 "ec2:DeleteNetworkInterface"
             ],
             "Resource": [
-                "arn:aws:ec2:*:*:network-interface/*"
+                "arn:aws-cn:ec2:*:*:network-interface/*"
             ],
             "Condition": {
                 "StringEquals": {
@@ -34,9 +34,9 @@
                 "ec2:ModifyNetworkInterfaceAttribute"
             ],
             "Resource": [
-                "arn:aws:ec2:*:*:instance/*",
-                "arn:aws:ec2:*:*:network-interface/*",
-                "arn:aws:ec2:*:*:security-group/*"
+                "arn:aws-cn:ec2:*:*:instance/*",
+                "arn:aws-cn:ec2:*:*:network-interface/*",
+                "arn:aws-cn:ec2:*:*:security-group/*"
             ]
         },
         {
@@ -63,7 +63,7 @@
                 "ec2:CreateSecurityGroup"
             ],
             "Resource": [
-                "arn:aws:ec2:*:*:security-group/*"
+                "arn:aws-cn:ec2:*:*:security-group/*"
             ],
             "Condition": {
                 "StringEquals": {
@@ -78,7 +78,7 @@
                 "ec2:CreateSecurityGroup"
             ],
             "Resource": [
-                "arn:aws:ec2:*:*:vpc/*"
+                "arn:aws-cn:ec2:*:*:vpc/*"
             ],
             "Condition": {
                 "StringEquals": {
@@ -92,7 +92,7 @@
             "Action": [
                 "ec2:CreateTags"
             ],
-            "Resource": "arn:aws:ec2:*:*:security-group/*",
+            "Resource": "arn:aws-cn:ec2:*:*:security-group/*",
             "Condition": {
                 "StringEquals": {
                     "aws:RequestTag/for-use-with-amazon-emr-managed-policies": "true",
@@ -107,7 +107,7 @@
                 "ec2:CreateNetworkInterface"
             ],
             "Resource": [
-                "arn:aws:ec2:*:*:network-interface/*"
+                "arn:aws-cn:ec2:*:*:network-interface/*"
             ],
             "Condition": {
                 "StringEquals": {
@@ -122,8 +122,8 @@
                 "ec2:CreateNetworkInterface"
             ],
             "Resource": [
-                "arn:aws:ec2:*:*:subnet/*",
-                "arn:aws:ec2:*:*:security-group/*"
+                "arn:aws-cn:ec2:*:*:subnet/*",
+                "arn:aws-cn:ec2:*:*:security-group/*"
             ],
             "Condition": {
                 "StringEquals": {
@@ -137,7 +137,7 @@
             "Action": [
                 "ec2:CreateTags"
             ],
-            "Resource": "arn:aws:ec2:*:*:network-interface/*",
+            "Resource": "arn:aws-cn:ec2:*:*:network-interface/*",
             "Condition": {
                 "StringEquals": {
                     "ec2:CreateAction": "CreateNetworkInterface"
@@ -163,7 +163,7 @@
             "Action": [
                 "secretsmanager:GetSecretValue"
             ],
-            "Resource": "arn:aws:secretsmanager:*:*:secret:*",
+            "Resource": "arn:aws-cn:secretsmanager:*:*:secret:*",
             "Condition": {
                 "StringEquals": {
                     "aws:ResourceTag/for-use-with-amazon-emr-managed-policies": "true"
@@ -179,7 +179,7 @@
                 "s3:ListBucket",
                 "s3:DeleteObject"
             ],
-            "Resource": "arn:aws:s3:::*"
+            "Resource": "arn:aws-cn:s3:::*"
         }
     ]
 }
