@@ -78,7 +78,7 @@ export class EmrEksAppStack extends cdk.Stack {
     );
     
     const cluster = new rds.DatabaseCluster(this, 'Database', {
-      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
+      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_10_0 }),
       credentials: rds.Credentials.fromSecret(databaseCredentialsSecret),
       defaultDatabaseName: "hivemetastore",
       instanceProps: {
