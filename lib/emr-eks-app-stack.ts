@@ -83,7 +83,7 @@ export class EmrEksAppStack extends cdk.Stack {
       defaultDatabaseName: "hivemetastore",
       instanceProps: {
         // optional , defaults to t3.medium
-        instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.SMALL),
+        instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE3, ec2.InstanceSize.SMALL),
         vpcSubnets: {
           subnetType: ec2.SubnetType.PRIVATE,
         },
