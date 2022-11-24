@@ -106,7 +106,7 @@ export class EmrEksAppStack extends cdk.Stack {
           new ec2.InstanceType('r5.2xlarge'),
           new ec2.InstanceType('r5.4xlarge')],
       minSize: 1,
-      maxSize: 12,
+      maxSize: 6,
       capacityType: eks.CapacityType.ON_DEMAND,
     });
 
@@ -117,7 +117,7 @@ export class EmrEksAppStack extends cdk.Stack {
           new ec2.InstanceType('m5.2xlarge'),
           new ec2.InstanceType('m5.4xlarge')],
       minSize: 1,
-      maxSize: 12,
+      maxSize: 6,
       capacityType: eks.CapacityType.SPOT,
     });
 
