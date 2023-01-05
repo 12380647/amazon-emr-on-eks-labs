@@ -48,7 +48,7 @@ export class EmrEksAppStack extends cdk.Stack {
     })); 
 
     emrEksRole.addToPolicy(new iam.PolicyStatement({
-      resources: ['arn:aws-cn:logs:*:*:*'],
+      resources: ['arn:aws:logs:*:*:*'],
       actions: ['logs:PutLogEvents', 'logs:CreateLogStream', 'logs:DescribeLogGroups', 'logs:DescribeLogStreams','logs:CreateLogGroup'],
     })); 
 
