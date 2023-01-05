@@ -101,9 +101,9 @@ export class EmrEksAppStack extends cdk.Stack {
 
     const ondemandNG = eksCluster.addNodegroupCapacity("ondemand-ng", {
       instanceTypes: [
-          new ec2.InstanceType('r5.xlarge'),
-          new ec2.InstanceType('r5.2xlarge'),
-          new ec2.InstanceType('r5.4xlarge')],
+          new ec2.InstanceType('m5.xlarge'),
+          new ec2.InstanceType('m5.2xlarge'),
+          new ec2.InstanceType('m5.4xlarge')],
       minSize: 2,
       maxSize: 12,
       capacityType: eks.CapacityType.ON_DEMAND,
