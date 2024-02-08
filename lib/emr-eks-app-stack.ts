@@ -78,12 +78,12 @@ export class EmrEksAppStack extends cdk.Stack {
     );
     
     const cluster = new rds.DatabaseCluster(this, 'Database', {
-      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_10_0 }),
+      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
       credentials: rds.Credentials.fromSecret(databaseCredentialsSecret),
       defaultDatabaseName: "hivemetastore",
       instanceProps: {
         // optional , defaults to t3.medium
-        instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE3, ec2.InstanceSize.SMALL),
+        instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.SMALL),
         vpcSubnets: {
           subnetType: ec2.SubnetType.PRIVATE,
         },
@@ -101,23 +101,21 @@ export class EmrEksAppStack extends cdk.Stack {
 
     const ondemandNG = eksCluster.addNodegroupCapacity("ondemand-ng", {
       instanceTypes: [
-          new ec2.InstanceType('m5.large'),
-          new ec2.InstanceType('m5.xlarge'),
-          new ec2.InstanceType('m5.2xlarge'),
-          new ec2.InstanceType('m5.4xlarge')],
-      minSize: 1,
-      maxSize: 6,
+        new ec2.InstanceType('r5.xlarge'),
+        new ec2.InstanceType('r5.2xlarge'),
+        new ec2.InstanceType('r5.4xlarge')],
+      minSize: 3,
+      maxSize: 12,
       capacityType: eks.CapacityType.ON_DEMAND,
     });
 
     const spotNG = eksCluster.addNodegroupCapacity("spot-ng", {
       instanceTypes: [
-          new ec2.InstanceType('m5.large'),
-          new ec2.InstanceType('m5.xlarge'),
-          new ec2.InstanceType('m5.2xlarge'),
-          new ec2.InstanceType('m5.4xlarge')],
-      minSize: 1,
-      maxSize: 6,
+        new ec2.InstanceType('m5.xlarge'),
+        new ec2.InstanceType('m5.2xlarge'),
+        new ec2.InstanceType('m5.4xlarge')],
+      minSize: 3,
+      maxSize: 12,
       capacityType: eks.CapacityType.SPOT,
     });
 
