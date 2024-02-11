@@ -8,9 +8,13 @@ import * as cloud9 from '@aws-cdk/aws-cloud9';
 import * as s3 from '@aws-cdk/aws-s3';
 import * as fs from 'fs';
 
+import * as kinesis from 'aws-cdk-lib/aws-kinesis';
+
+
 //import {readYamlFromDir} from '../utils/read-file';
 
 import * as iam from '@aws-cdk/aws-iam';
+
 
 
 export class EmrEksAppStack extends cdk.Stack {
@@ -163,7 +167,21 @@ export class EmrEksAppStack extends cdk.Stack {
 
     cdk.Tags.of(EmrStudioEngineSg).add('for-use-with-amazon-emr-managed-policies','true');
     cdk.Tags.of(EmrStudioWorkspaceSg).add('for-use-with-amazon-emr-managed-policies','true');
-      
+
+    /*
+     * Kinesis Generator
+     */
+
+        // Create Kinesis data stream
+    const kinesisMyStream = new kinesis.Stream(this, 'MyKinesisStream', {
+            streamName: 'my-data-stream'
+        });
+
+    new cdk.CfnOutput(this,'kinesisMyStream',{
+            value: kinesisMyStream.streamName,
+            description: 'My Kinesis Stream'
+        });
+
    new cdk.CfnOutput(this,'EmrStudioUserSessionPolicyArn',{
       value: EmrStudioUserIAMPolicy.managedPolicyArn,
       description: 'EmrStudio user session policy Arn'
