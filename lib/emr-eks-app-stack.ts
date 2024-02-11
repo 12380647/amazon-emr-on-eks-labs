@@ -11,7 +11,7 @@ import { CapacityType, CfnAddon, Cluster, KubernetesVersion } from 'aws-cdk-lib/
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import * as IamPolicyEbsCsiDriver from'./../k8s/iam-policy-ebs-csi-driver.json';
 import { KubectlV26Layer } from '@aws-cdk/lambda-layer-kubectl-v26';
-
+import * as kinesis from 'aws-cdk-lib/aws-kinesis';
 
 export class EmrEksAppStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -197,7 +197,21 @@ export class EmrEksAppStack extends cdk.Stack {
 
     cdk.Tags.of(EmrStudioEngineSg).add('for-use-with-amazon-emr-managed-policies','true');
     cdk.Tags.of(EmrStudioWorkspaceSg).add('for-use-with-amazon-emr-managed-policies','true');
-      
+
+    /*
+     * Kinesis Generator
+     */
+
+    // Create Kinesis data stream
+    const kinesisMyStream = new kinesis.Stream(this, 'MyKinesisStream', {
+        streamName: 'my-data-stream'
+    });
+
+    new cdk.CfnOutput(this,'kinesisMyStream',{
+        value: kinesisMyStream.streamName,
+        description: 'My Kinesis Stream'
+    });
+
    new cdk.CfnOutput(this,'EmrStudioUserSessionPolicyArn',{
       value: EmrStudioUserIAMPolicy.managedPolicyArn,
       description: 'EmrStudio user session policy Arn'
