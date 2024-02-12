@@ -1,0 +1,50 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/KinesisDataGeneratorCognitoSetup*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "cognito-idp:AdminConfirmSignUp",
+          "cognito-idp:CreateUserPoolClient",
+          "cognito-idp:AdminCreateUser"],
+        "Resource": [
+          "arn:aws:cognito-idp:*:*:userpool/*"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "cognito-idp:CreateUserPool",
+          "cognito-identity:CreateIdentityPool",
+          "cognito-identity:SetIdentityPoolRoles"],
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": ["iam:UpdateAssumeRolePolicy"],
+        "Resource": [
+            "AuthenticatedUserRole",
+            "UnauthenticatedUserRole"
+          ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": ["iam:PassRole"],
+        "Resource": [
+          "AuthenticatedUserRole",
+          "UnauthenticatedUserRole"
+        ]
+      }
+    ]
+  }

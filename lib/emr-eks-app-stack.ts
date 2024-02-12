@@ -12,6 +12,7 @@ import { Bucket } from 'aws-cdk-lib/aws-s3';
 import * as IamPolicyEbsCsiDriver from'./../k8s/iam-policy-ebs-csi-driver.json';
 import { KubectlV26Layer } from '@aws-cdk/lambda-layer-kubectl-v26';
 import * as kinesis from 'aws-cdk-lib/aws-kinesis';
+import * as cfninc from 'aws-cdk-lib/cloudformation-include';
 
 export class EmrEksAppStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -203,13 +204,18 @@ export class EmrEksAppStack extends cdk.Stack {
      */
 
     // Create Kinesis data stream
-    const kinesisMyStream = new kinesis.Stream(this, 'MyKinesisStream', {
-        streamName: 'my-data-stream'
+    const kinesisMyStream = new kinesis.Stream(this, 'TickStream', {
+        streamName: 'TickStream'
     });
 
-    new cdk.CfnOutput(this,'kinesisMyStream',{
+    const template = new cfninc.CfnInclude(this, 'KinesisGenerator', {
+            templateFile: './../k8s/KinesisGenerator-cnf.yaml',
+            preserveLogicalIds: false
+    });
+
+    new cdk.CfnOutput(this,'TickStream',{
         value: kinesisMyStream.streamName,
-        description: 'My Kinesis Stream'
+        description: 'Tick Stream'
     });
 
    new cdk.CfnOutput(this,'EmrStudioUserSessionPolicyArn',{
