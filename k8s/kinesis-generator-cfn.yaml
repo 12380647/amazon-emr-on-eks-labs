@@ -17,7 +17,7 @@ Resources:
       Name: KDSGeneratorSecret
       Description: This secret is for KDSGenerator
       SecretString: '{"username":"awsuser","password":"Awsuser123"}'
-      
+
   # Congito Resource
   DataGenCognitoSetupLambdaFunc:
     Type: 'AWS::Lambda::Function'
@@ -179,3 +179,14 @@ Resources:
                   - '*'
                 Resource:
                   - '*'
+
+Outputs:
+  KinesisDataGeneratorUrl:
+    Description: The URL for your Kinesis Data Generator.
+    Value: !Join
+      - ''
+      - - >-
+          https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html?
+        - !GetAtt
+          - SetupCognitoCustom
+          - Querystring

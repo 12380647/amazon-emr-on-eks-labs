@@ -208,10 +208,12 @@ export class EmrEksAppStack extends cdk.Stack {
         streamName: 'TickStream'
     });
 
-    const template = new cfninc.CfnInclude(this, 'KinesisGenerator', {
+    const cfn_template = new cfninc.CfnInclude(this, 'KinesisGenerator', {
             templateFile: './k8s/kinesis-generator-cfn.yaml',
             preserveLogicalIds: false
     });
+
+    const cfn_output = cfn_template.get_output("KinesisDataGeneratorUrl")
 
     new cdk.CfnOutput(this,'TickStreamName',{
         value: kinesisMyStream.streamName,
