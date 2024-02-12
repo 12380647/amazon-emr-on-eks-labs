@@ -213,7 +213,7 @@ export class EmrEksAppStack extends cdk.Stack {
             preserveLogicalIds: false
     });
 
-    new cdk.CfnOutput(this,'TickStream',{
+    new cdk.CfnOutput(this,'TickStreamName',{
         value: kinesisMyStream.streamName,
         description: 'Tick Stream'
     });
