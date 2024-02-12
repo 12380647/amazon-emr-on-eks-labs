@@ -10,6 +10,14 @@ Metadata:
           - Password
 
 Resources:
+
+  KDSGeneratorSecret:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: KDSGeneratorSecret
+      Description: This secret is for KDSGenerator
+      SecretString: '{"username":"awsuser","password":"Awsuser123"}'
+      
   # Congito Resource
   DataGenCognitoSetupLambdaFunc:
     Type: 'AWS::Lambda::Function'
