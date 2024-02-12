@@ -215,6 +215,12 @@ export class EmrEksAppStack extends cdk.Stack {
 
     const cfn_output = cfn_template.get_output("KinesisDataGeneratorUrl")
 
+
+    new cdk.CfnOutput(this,'KinesisDataGeneratorUrl',{
+            value: cfn_output.value,
+            description: 'Kinesis Data Generator Url'
+        });
+
     new cdk.CfnOutput(this,'TickStreamName',{
         value: kinesisMyStream.streamName,
         description: 'Tick Stream'
