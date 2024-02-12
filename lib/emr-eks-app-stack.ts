@@ -213,7 +213,7 @@ export class EmrEksAppStack extends cdk.Stack {
             preserveLogicalIds: false
     });
 
-    const cfn_output = cfn_template.get_output("KinesisDataGeneratorUrl")
+    const cfn_output = cfn_template.getOutput("KinesisDataGeneratorUrl")
 
 
     new cdk.CfnOutput(this,'KinesisDataGeneratorUrl',{
