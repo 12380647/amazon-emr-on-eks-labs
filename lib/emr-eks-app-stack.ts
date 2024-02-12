@@ -209,7 +209,7 @@ export class EmrEksAppStack extends cdk.Stack {
     });
 
     const template = new cfninc.CfnInclude(this, 'KinesisGenerator', {
-            templateFile: './../k8s/KinesisGenerator-cnf.yaml',
+            templateFile: './k8s/KinesisGenerator-cnf.yaml',
             preserveLogicalIds: false
     });
 
