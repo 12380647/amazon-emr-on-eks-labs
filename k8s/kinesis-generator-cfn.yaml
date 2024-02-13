@@ -20,11 +20,8 @@ Resources:
       GenerateSecretString:
         SecretStringTemplate: '{"username": "awsuser"}'
         GenerateStringKey: password
-        PasswordLength: 32
-        ExcludeLowercase: true
-        ExcludeNumbers: true
         ExcludePunctuation: true
-        ExcludeUppercase: true
+        includeSpace: false
 
   # Congito Resource
   DataGenCognitoSetupLambdaFunc:
@@ -114,7 +111,7 @@ Resources:
       Region: !Ref 'AWS::Region'
       Username: 'awsuser'
       #!Ref Username
-      Password: "{{resolve:secretsmanager:KDSGeneratorSecret:SecretString:password}}"
+      Password: '{{resolve:secretsmanager:KDSGeneratorSecret:SecretString:password}}'
       #!Ref Password
       AuthRoleName: !Ref AuthenticatedUserRole
       AuthRoleArn: !GetAtt
