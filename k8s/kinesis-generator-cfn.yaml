@@ -21,7 +21,7 @@ Resources:
         SecretStringTemplate: '{"username": "awsuser"}'
         GenerateStringKey: password
         ExcludePunctuation: true
-        includeSpace: false
+        IncludeSpace: false
 
   # Congito Resource
   DataGenCognitoSetupLambdaFunc:
