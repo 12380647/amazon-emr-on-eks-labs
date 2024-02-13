@@ -16,7 +16,11 @@ Resources:
     Properties:
       Name: KDSGeneratorSecret
       Description: This secret is for KDSGenerator
-      SecretString: '{"username":"awsuser","password":"Awsuser123"}'
+#      SecretString: '{"username":"awsuser","password":"Awsuser123"}'
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "awsuser"}'
+        GenerateStringKey: password
+        PasswordLength: 16
 
   # Congito Resource
   DataGenCognitoSetupLambdaFunc:
@@ -106,7 +110,7 @@ Resources:
       Region: !Ref 'AWS::Region'
       Username: 'awsuser'
       #!Ref Username
-      Password: 'Awsuser123'
+      Password: "{{resolve:secretsmanager:KDSGeneratorSecret:SecretString:password}}"
       #!Ref Password
       AuthRoleName: !Ref AuthenticatedUserRole
       AuthRoleArn: !GetAtt
